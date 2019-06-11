@@ -1,0 +1,19 @@
+{
+  "name": "ics-tsc",
+  "version": "1.0.0",
+  "description": "a library that generates ics files",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ics",
+    "icalendar",
+    "ical",
+    "tsc",
+    "libraary",
+    "calendar"
+  ],
+  "author": "“Loukas <“loukas.kotas@gmail.com”> (“https://www.github.com/loukas-kotas/”)",
+  "license": "MIT"
+}
