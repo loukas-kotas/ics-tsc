@@ -4,7 +4,8 @@
   "description": "a library that generates ics files",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
   },
   "keywords": [
     "ics",
@@ -15,5 +16,8 @@
     "calendar"
   ],
   "author": "“Loukas <“loukas.kotas@gmail.com”> (“https://www.github.com/loukas-kotas/”)",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "file-saver": "^2.0.2"
+  }
 }
