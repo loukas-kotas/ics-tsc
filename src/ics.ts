@@ -16,13 +16,13 @@ export class ICS {
     dtendStr: string;
 
     constructor(
-        filename: string,
-        dtstamp: number,
-        dtstart: number,
-        dtend: number,
-        summary: string,
-        location: string,
-        description: string
+        filename?: string,
+        dtstamp?: number,
+        dtstart?: number,
+        dtend?: number,
+        summary?: string,
+        location?: string,
+        description?: string
     ) {
         this.filename = filename;
         this.dtstamp = dtstamp;
