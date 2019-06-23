@@ -23,16 +23,48 @@ var ICS = (function () {
         var blob = new Blob([response._body], { type: 'text/plain' });
         file_saver_1.saveAs(blob, this.filename);
     };
+    ICS.prototype.getIcsWithTimezone = function () {
+        this.filename = this.putIcsExtension();
+        this.dtstampStr = this.formatDateWithTimezone(this.dtstamp);
+        this.dtstartStr = this.formatDateWithTimezone(this.dtstart);
+        this.dtendStr = this.formatDateWithTimezone(this.dtend);
+        var response = this.constructIcsWithTimezone();
+        var blob = new Blob([response._body], { type: 'text/plain' });
+        file_saver_1.saveAs(blob, this.filename);
+    };
     ICS.prototype.putIcsExtension = function () {
         var filename = this.filename + ".ics";
         return filename;
     };
     ICS.prototype.formatDate = function (dateUTC) {
         var datetime = new Date(dateUTC);
+        // const year = datetime.getFullYear();
+        // let month = this.setMonthIcsIndex(datetime.getMonth()); // first month: 0
+        // let day = datetime.getDate();
+        // let hours = this.setUtcTimezone(datetime.getHours()); 
+        // let minutes = datetime.getMinutes();
+        // let seconds = datetime.getSeconds();
+        // month     = this.forceTwoDigits(month);
+        // day       = this.forceTwoDigits(day);
+        // hours     = this.forceTwoDigits(hours);
+        // minutes   = this.forceTwoDigits(minutes);
+        // seconds   = this.forceTwoDigits(seconds);
+        var _a = this.formatDateGeneral(dateUTC), year = _a[0], month = _a[1], day = _a[2], hours = _a[3], minutes = _a[4], seconds = _a[5];
+        hours = this.setUtcTimezone(datetime.getHours());
+        var result = "" + year + month + day + "T" + hours + minutes + seconds + "Z";
+        return result;
+    };
+    ICS.prototype.formatDateWithTimezone = function (dateUTC) {
+        var _a = this.formatDateGeneral(dateUTC), year = _a[0], month = _a[1], day = _a[2], hours = _a[3], minutes = _a[4], seconds = _a[5];
+        var result = "" + year + month + day + "T" + hours + minutes + seconds;
+        return result;
+    };
+    ICS.prototype.formatDateGeneral = function (dateUTC) {
+        var datetime = new Date(dateUTC);
         var year = datetime.getFullYear();
         var month = this.setMonthIcsIndex(datetime.getMonth()); // first month: 0
         var day = datetime.getDate();
-        var hours = this.setUtcTimezone(datetime.getHours());
+        var hours = datetime.getHours();
         var minutes = datetime.getMinutes();
         var seconds = datetime.getSeconds();
         month = this.forceTwoDigits(month);
@@ -40,8 +72,7 @@ var ICS = (function () {
         hours = this.forceTwoDigits(hours);
         minutes = this.forceTwoDigits(minutes);
         seconds = this.forceTwoDigits(seconds);
-        var result = "" + year + month + day + "T" + hours + minutes + seconds + "Z";
-        return result;
+        return [year, month, day, hours, minutes, seconds];
     };
     ICS.prototype.setMonthIcsIndex = function (month) {
         return month + 1;
@@ -56,9 +87,20 @@ var ICS = (function () {
         }
         return dateItem.toString();
     };
+    ICS.prototype.getTimeZone = function () {
+        var timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        return timezone;
+    };
     ICS.prototype.constructIcsEvent = function () {
         var response = {
             _body: "BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:http://www.icalmaker.com\nBEGIN:VEVENT\nUID:http://www.icalmaker.com/event/ed803b69-b846-49c4-a321-ccfc0ba55272\nDTSTAMP:" + this.dtstampStr + "\nDTSTART:" + this.dtstartStr + "\nDTEND:" + this.dtendStr + "\nSUMMARY:" + this.summary + "\nLOCATION:" + this.location + "\nDESCRIPTION:" + this.description + "\nEND:VEVENT\nEND:VCALENDAR"
+        };
+        return response;
+    };
+    ICS.prototype.constructIcsWithTimezone = function () {
+        var timezone = this.getTimeZone();
+        var response = {
+            _body: "BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:http://www.icalmaker.com\nBEGIN:VEVENT\nUID:http://www.icalmaker.com/event/ed803b69-b846-49c4-a321-ccfc0ba55272\nDTSTAMP;TZID=" + timezone + ":" + this.dtstampStr + "\nDTSTART;TZID=" + timezone + ":" + this.dtstartStr + "\nDTEND;TZID=" + timezone + ":" + this.dtendStr + "\nSUMMARY:" + this.summary + "\nLOCATION:" + this.location + "\nDESCRIPTION:" + this.description + "\nEND:VEVENT\nEND:VCALENDAR"
         };
         return response;
     };
