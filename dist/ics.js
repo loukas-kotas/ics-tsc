@@ -38,28 +38,17 @@ var ICS = (function () {
     };
     ICS.prototype.formatDate = function (dateUTC) {
         var datetime = new Date(dateUTC);
-        // const year = datetime.getFullYear();
-        // let month = this.setMonthIcsIndex(datetime.getMonth()); // first month: 0
-        // let day = datetime.getDate();
-        // let hours = this.setUtcTimezone(datetime.getHours()); 
-        // let minutes = datetime.getMinutes();
-        // let seconds = datetime.getSeconds();
-        // month     = this.forceTwoDigits(month);
-        // day       = this.forceTwoDigits(day);
-        // hours     = this.forceTwoDigits(hours);
-        // minutes   = this.forceTwoDigits(minutes);
-        // seconds   = this.forceTwoDigits(seconds);
-        var _a = this.formatDateGeneral(dateUTC), year = _a[0], month = _a[1], day = _a[2], hours = _a[3], minutes = _a[4], seconds = _a[5];
+        var _a = this.formatDateBuilder(dateUTC), year = _a[0], month = _a[1], day = _a[2], hours = _a[3], minutes = _a[4], seconds = _a[5];
         hours = this.setUtcTimezone(datetime.getHours());
         var result = "" + year + month + day + "T" + hours + minutes + seconds + "Z";
         return result;
     };
     ICS.prototype.formatDateWithTimezone = function (dateUTC) {
-        var _a = this.formatDateGeneral(dateUTC), year = _a[0], month = _a[1], day = _a[2], hours = _a[3], minutes = _a[4], seconds = _a[5];
+        var _a = this.formatDateBuilder(dateUTC), year = _a[0], month = _a[1], day = _a[2], hours = _a[3], minutes = _a[4], seconds = _a[5];
         var result = "" + year + month + day + "T" + hours + minutes + seconds;
         return result;
     };
-    ICS.prototype.formatDateGeneral = function (dateUTC) {
+    ICS.prototype.formatDateBuilder = function (dateUTC) {
         var datetime = new Date(dateUTC);
         var year = datetime.getFullYear();
         var month = this.setMonthIcsIndex(datetime.getMonth()); // first month: 0
@@ -107,17 +96,3 @@ var ICS = (function () {
     return ICS;
 }());
 exports.ICS = ICS;
-// ----- EXAMPLE ------
-// BEGIN:VCALENDAR
-// VERSION:2.0
-// PRODID:http://www.icalmaker.com
-// BEGIN:VEVENT
-// UID:http://www.icalmaker.com/event/ed803b69-b846-49c4-a321-ccfc0ba55272
-// DTSTAMP:20190608T204202Z
-// DTSTART:20190609T052000Z
-// DTEND:20190610T063500Z
-// SUMMARY:test 1
-// LOCATION:Thessaloniki
-// DESCRIPTION:test 1 description
-// END:VEVENT
-// END:VCALENDAR 

@@ -15,7 +15,7 @@ export declare class ICS {
     putIcsExtension(): string;
     formatDate(dateUTC: any): string;
     formatDateWithTimezone(dateUTC: any): string;
-    formatDateGeneral(dateUTC: any): any[];
+    formatDateBuilder(dateUTC: any): any[];
     setMonthIcsIndex(month: any): any;
     setUtcTimezone(hours: any): any;
     forceTwoDigits(dateItem: any): any;
