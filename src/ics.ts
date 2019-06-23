@@ -22,6 +22,7 @@ export class ICS {
         dtend?: number,
         summary?: string,
         description?: string,
+        location?: string
     )
 
     constructor(
@@ -31,14 +32,14 @@ export class ICS {
         dtend?: number,
         summary?: string,
         description?: string,
-        location?: string,
+        // location?: string,
     ) {
         this.filename = filename;
         this.dtstamp = dtstamp;
         this.dtstart = dtstart;
         this.dtend = dtend;
         this.summary = summary;
-        this.location = location || ' ';
+        this.location = ' ';
         this.description = description;
     }
 

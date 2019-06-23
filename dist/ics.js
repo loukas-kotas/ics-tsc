@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var file_saver_1 = require("file-saver");
-var ICS = /** @class */ (function () {
-    function ICS(filename, dtstamp, dtstart, dtend, summary, location, description) {
+var ICS = (function () {
+    function ICS(filename, dtstamp, dtstart, dtend, summary, description) {
         this.dtstamp = {};
         this.dtstart = {};
         this.dtend = {};
@@ -11,7 +11,7 @@ var ICS = /** @class */ (function () {
         this.dtstart = dtstart;
         this.dtend = dtend;
         this.summary = summary;
-        this.location = location;
+        this.location = ' ';
         this.description = description;
     }
     ICS.prototype.getIcs = function () {
@@ -78,4 +78,4 @@ exports.ICS = ICS;
 // LOCATION:Thessaloniki
 // DESCRIPTION:test 1 description
 // END:VEVENT
-// END:VCALENDAR
+// END:VCALENDAR 
