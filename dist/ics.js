@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var file_saver_1 = require("file-saver");
 var ICS = (function () {
-    function ICS(filename, dtstamp, dtstart, dtend, summary, description) {
+    function ICS(filename, dtstamp, dtstart, dtend, summary, description, location) {
         this.dtstamp = {};
         this.dtstart = {};
         this.dtend = {};
@@ -11,8 +11,8 @@ var ICS = (function () {
         this.dtstart = dtstart;
         this.dtend = dtend;
         this.summary = summary;
-        this.location = ' ';
         this.description = description;
+        this.location = location;
     }
     ICS.prototype.getIcs = function () {
         this.filename = this.putIcsExtension();

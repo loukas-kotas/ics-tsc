@@ -9,7 +9,7 @@ export declare class ICS {
     dtstampStr: string;
     dtstartStr: string;
     dtendStr: string;
-    constructor(filename?: string, dtstamp?: number, dtstart?: number, dtend?: number, summary?: string, description?: string, location?: string);
+    constructor(filename?: string, dtstamp?: number, dtstart?: number, dtend?: number, summary?: string, description?: string);
     getIcs(): void;
     putIcsExtension(): string;
     formatDate(dateUTC: any): string;
