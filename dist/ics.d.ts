@@ -10,15 +10,13 @@ export declare class ICS {
     dtstartStr: string;
     dtendStr: string;
     constructor(filename: string, dtstamp: number, dtstart: number, dtend: number, summary: string, location: string, description: string);
-    generateIcs(): void;
-    getExample(): {
-        _body: string;
-    };
+    getIcs(): void;
+    putIcsExtension(): string;
+    formatDate(dateUTC: any): string;
+    setMonthIcsIndex(month: any): any;
+    setUtcTimezone(hours: any): any;
+    forceTwoDigits(dateItem: any): any;
     constructIcsEvent(): {
         _body: string;
     };
-    getIcs(): void;
-    putIcsExtension(): void;
-    formatDate(dateUTC: any): string;
-    forceTwoDigits(dateItem: any): any;
 }

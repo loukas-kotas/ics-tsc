@@ -24,28 +24,6 @@ export class ICS {
         location: string,
         description: string
     ) {
-        this.dtstamp = {
-            value: dtstamp,
-            get string() {
-                const result =  this.dtstamp.toString();
-                return result;
-            }
-        }
-        this.dtstart = {
-            value: dtstamp,
-            get string() {
-                const result =  dtstamp.toString();
-                return result;
-            }
-        }
-        this.dtend = {
-            value: dtstamp,
-            get string() {
-                const result =  dtstamp.toString();
-                return result;
-            }
-        }
-
         this.filename = filename;
         this.dtstamp = dtstamp;
         this.dtstart = dtstart;
@@ -55,60 +33,8 @@ export class ICS {
         this.description = description;
     }
 
-    generateIcs() {
-
-        const filename = 'sample-.ics';
-        let response = this.getExample();
-        response._body = response._body.trim();
-        const blob = new Blob([response._body.trim()], { type: 'text/plain' });
-        saveAs(blob, filename);    
-
-    }
-
-    getExample() {
-        const response = {
-            _body: `
-            BEGIN:VCALENDAR
-            VERSION:2.0
-            PRODID:http://www.icalmaker.com
-            BEGIN:VEVENT
-            UID:http://www.icalmaker.com/event/ed803b69-b846-49c4-a321-ccfc0ba55272
-            DTSTAMP:20190608T204202Z
-            DTSTART: 20190609T052000Z
-            DTEND: 20190610T063500Z
-            SUMMARY:test 1
-            LOCATION:Thessaloniki
-            DESCRIPTION:test 1 description
-            END:VEVENT
-            END:VCALENDAR
-            `
-        };
-        return response;
-    }
-
-    constructIcsEvent() {
-        const response = {
-            _body:
-           `BEGIN:VCALENDAR
-            VERSION:2.0
-            PRODID:http://www.icalmaker.com
-            BEGIN:VEVENT
-            UID:http://www.icalmaker.com/event/ed803b69-b846-49c4-a321-ccfc0ba55272
-            DTSTAMP:${this.dtstampStr}
-            DTSTART:${this.dtstartStr}
-            DTEND:${this.dtendStr}
-            SUMMARY:${this.summary}
-            LOCATION:${this.location}
-            DESCRIPTION:${this.description}
-            END:VEVENT
-            END:VCALENDAR`  
-        };
-        // response._body = response._body.replace(/ /g,'');
-        return response;
-    }
-
     getIcs() {
-        this.putIcsExtension();
+        this.filename = this.putIcsExtension();
         this.dtstampStr = this.formatDate(this.dtstamp);
         this.dtstartStr = this.formatDate(this.dtstart);
         this.dtendStr   = this.formatDate(this.dtend);
@@ -118,15 +44,16 @@ export class ICS {
     }
 
     putIcsExtension() {
-        this.filename = `${this.filename}.ics`;
+        const filename = `${this.filename}.ics`;
+        return filename;
     }
 
     formatDate(dateUTC) {
         const datetime = new Date(dateUTC);
         const year = datetime.getFullYear();
-        let month = datetime.getMonth();
+        let month = this.setMonthIcsIndex(datetime.getMonth()); // first month: 0
         let day = datetime.getDate();
-        let hours = datetime.getHours();
+        let hours = this.setUtcTimezone(datetime.getHours()); 
         let minutes = datetime.getMinutes();
         let seconds = datetime.getSeconds();
 
@@ -135,10 +62,17 @@ export class ICS {
         hours     = this.forceTwoDigits(hours);
         minutes   = this.forceTwoDigits(minutes);
         seconds   = this.forceTwoDigits(seconds);
-        
-        // const result = datetime.toISOString().split('-').join('').split(':').join('').split('.').join('')
         const result = `${year}${month}${day}T${hours}${minutes}${seconds}Z`;
         return result;
+    }
+
+    setMonthIcsIndex(month) {
+        return month + 1;
+    } 
+
+    setUtcTimezone(hours) {
+        const offset = new Date().getTimezoneOffset() / 60;
+        return hours + offset;
     }
 
     forceTwoDigits(dateItem) {
@@ -147,6 +81,27 @@ export class ICS {
         }
         return dateItem.toString();
     }
+
+    constructIcsEvent() {
+        const response = {
+            _body:
+           `BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:http://www.icalmaker.com
+BEGIN:VEVENT
+UID:http://www.icalmaker.com/event/ed803b69-b846-49c4-a321-ccfc0ba55272
+DTSTAMP:${this.dtstampStr}
+DTSTART:${this.dtstartStr}
+DTEND:${this.dtendStr}
+SUMMARY:${this.summary}
+LOCATION:${this.location}
+DESCRIPTION:${this.description}
+END:VEVENT
+END:VCALENDAR`  
+        };
+        return response;
+    }
+
 }
 
 // ----- EXAMPLE ------
