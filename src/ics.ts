@@ -21,15 +21,24 @@ export class ICS {
         dtstart?: number,
         dtend?: number,
         summary?: string,
+        description?: string,
+    )
+
+    constructor(
+        filename?: string,
+        dtstamp?: number,
+        dtstart?: number,
+        dtend?: number,
+        summary?: string,
+        description?: string,
         location?: string,
-        description?: string
     ) {
         this.filename = filename;
         this.dtstamp = dtstamp;
         this.dtstart = dtstart;
         this.dtend = dtend;
         this.summary = summary;
-        this.location = location;
+        this.location = location || ' ';
         this.description = description;
     }
 
