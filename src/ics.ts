@@ -3,17 +3,17 @@ import { saveAs } from 'file-saver';
 
 export class ICS {
 
-    filename: string;
-    dtstamp: any = {};
-    dtstart: any = {};
-    dtend: any = {};
-    summary: string;
-    location: string;
-    description: string;
+    private filename: string;
+    private dtstamp: any = {};
+    private dtstart: any = {};
+    private dtend: any = {};
+    private summary: string;
+    private location: string;
+    private description: string;
 
-    dtstampStr: string;
-    dtstartStr: string;
-    dtendStr: string;
+    private dtstampStr: string;
+    private dtstartStr: string;
+    private dtendStr: string;
 
     constructor(
         filename?: string,
