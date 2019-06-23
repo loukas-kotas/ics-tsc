@@ -69,31 +69,19 @@ export class ICS {
 
     formatDate(dateUTC) {
         const datetime = new Date(dateUTC);
-        // const year = datetime.getFullYear();
-        // let month = this.setMonthIcsIndex(datetime.getMonth()); // first month: 0
-        // let day = datetime.getDate();
-        // let hours = this.setUtcTimezone(datetime.getHours()); 
-        // let minutes = datetime.getMinutes();
-        // let seconds = datetime.getSeconds();
-
-        // month     = this.forceTwoDigits(month);
-        // day       = this.forceTwoDigits(day);
-        // hours     = this.forceTwoDigits(hours);
-        // minutes   = this.forceTwoDigits(minutes);
-        // seconds   = this.forceTwoDigits(seconds);
-        let [year, month, day, hours, minutes, seconds] = this.formatDateGeneral(dateUTC);
+        let [year, month, day, hours, minutes, seconds] = this.formatDateBuilder(dateUTC);
         hours = this.setUtcTimezone(datetime.getHours()); 
         const result = `${year}${month}${day}T${hours}${minutes}${seconds}Z`;
         return result;
     }
 
     formatDateWithTimezone(dateUTC) {
-        const [year, month, day, hours, minutes, seconds] = this.formatDateGeneral(dateUTC);
+        const [year, month, day, hours, minutes, seconds] = this.formatDateBuilder(dateUTC);
         const result = `${year}${month}${day}T${hours}${minutes}${seconds}`;
         return result;    
     }
 
-    formatDateGeneral(dateUTC) {
+    formatDateBuilder(dateUTC) {
         const datetime = new Date(dateUTC);
         const year = datetime.getFullYear();
         let month = this.setMonthIcsIndex(datetime.getMonth()); // first month: 0
