@@ -42,7 +42,7 @@ export class ICS {
         this.location = location;
     }
 
-    getIcs() {
+    public getIcs() {
         this.filename = this.putIcsExtension();
         this.dtstampStr = this.formatDate(this.dtstamp);
         this.dtstartStr = this.formatDate(this.dtstart);
@@ -52,7 +52,7 @@ export class ICS {
         saveAs(blob, this.filename);
     }
 
-    getIcsWithTimezone() {
+    public getIcsWithTimezone() {
         this.filename = this.putIcsExtension();
         this.dtstampStr = this.formatDateWithTimezone(this.dtstamp);
         this.dtstartStr = this.formatDateWithTimezone(this.dtstart);
@@ -62,12 +62,12 @@ export class ICS {
         saveAs(blob, this.filename);
     }
 
-    putIcsExtension() {
+    private putIcsExtension() {
         const filename = `${this.filename}.ics`;
         return filename;
     }
 
-    formatDate(dateUTC) {
+    private formatDate(dateUTC) {
         const datetime = new Date(dateUTC);
         let [year, month, day, hours, minutes, seconds] = this.formatDateBuilder(dateUTC);
         hours = this.setUtcTimezone(datetime.getHours()); 
@@ -75,13 +75,13 @@ export class ICS {
         return result;
     }
 
-    formatDateWithTimezone(dateUTC) {
+    private formatDateWithTimezone(dateUTC) {
         const [year, month, day, hours, minutes, seconds] = this.formatDateBuilder(dateUTC);
         const result = `${year}${month}${day}T${hours}${minutes}${seconds}`;
         return result;    
     }
 
-    formatDateBuilder(dateUTC) {
+    private formatDateBuilder(dateUTC) {
         const datetime = new Date(dateUTC);
         const year = datetime.getFullYear();
         let month = this.setMonthIcsIndex(datetime.getMonth()); // first month: 0
@@ -100,28 +100,28 @@ export class ICS {
 
     }
 
-    setMonthIcsIndex(month) {
+    private setMonthIcsIndex(month) {
         return month + 1;
     } 
 
-    setUtcTimezone(hours) {
+    private setUtcTimezone(hours) {
         const offset = new Date().getTimezoneOffset() / 60;
         return hours + offset;
     }
 
-    forceTwoDigits(dateItem) {
+    private forceTwoDigits(dateItem) {
         if (dateItem.toString().length === 1) {
             return `0${dateItem}`;
         }
         return dateItem.toString();
     }
 
-   getTimeZone() {
+   private getTimeZone() {
        const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
        return timezone;
    } 
 
-    constructIcsEvent() {
+    private constructIcsEvent() {
         const response = {
             _body:
            `BEGIN:VCALENDAR
@@ -141,7 +141,7 @@ END:VCALENDAR`
         return response;
     }
 
-    constructIcsWithTimezone() {
+    private constructIcsWithTimezone() {
         const timezone = this.getTimeZone();
         const response = {
             _body:
