@@ -16,6 +16,7 @@
     "libraary",
     "calendar"
   ],
+  "repository": { "type": "git", "url": "git+https://github.com/loukas-kotas/ics-tsc.git" },
   "author": "“Loukas <“loukas.kotas@gmail.com”> (“https://www.github.com/loukas-kotas/”)",
   "license": "MIT",
   "dependencies": {
