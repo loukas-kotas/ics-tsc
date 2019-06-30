@@ -40,6 +40,7 @@ var ICS = (function () {
         var datetime = new Date(dateUTC);
         var _a = this.formatDateBuilder(dateUTC), year = _a[0], month = _a[1], day = _a[2], hours = _a[3], minutes = _a[4], seconds = _a[5];
         hours = this.setUtcTimezone(datetime.getHours());
+        hours = this.forceTwoDigits(hours);
         var result = "" + year + month + day + "T" + hours + minutes + seconds + "Z";
         return result;
     };
@@ -82,7 +83,7 @@ var ICS = (function () {
     };
     ICS.prototype.constructIcsEvent = function () {
         var response = {
-            _body: "BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:http://www.icalmaker.com\nBEGIN:VEVENT\nUID:http://www.icalmaker.com/event/ed803b69-b846-49c4-a321-ccfc0ba55272\nDTSTAMP:" + this.dtstampStr + "\nDTSTART:" + this.dtstartStr + "\nDTEND:" + this.dtendStr + "\nSUMMARY:" + this.summary + "\nLOCATION:" + this.location + "\nDESCRIPTION:" + this.description + "\nEND:VEVENT\nEND:VCALENDAR"
+            _body: "BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:http://www.icalmaker.com\nTZ:+00\nBEGIN:VEVENT\nUID:http://www.icalmaker.com/event/ed803b69-b846-49c4-a321-ccfc0ba55272\nDTSTAMP:" + this.dtstampStr + "\nDTSTART:" + this.dtstartStr + "\nDTEND:" + this.dtendStr + "\nSUMMARY:" + this.summary + "\nLOCATION:" + this.location + "\nDESCRIPTION:" + this.description + "\nEND:VEVENT\nEND:VCALENDAR"
         };
         return response;
     };

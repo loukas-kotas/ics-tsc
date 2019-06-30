@@ -71,6 +71,7 @@ export class ICS {
         const datetime = new Date(dateUTC);
         let [year, month, day, hours, minutes, seconds] = this.formatDateBuilder(dateUTC);
         hours = this.setUtcTimezone(datetime.getHours()); 
+        hours = this.forceTwoDigits(hours);
         const result = `${year}${month}${day}T${hours}${minutes}${seconds}Z`;
         return result;
     }
