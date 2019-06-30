@@ -1,6 +1,6 @@
 {
   "name": "ics-tsc",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "a library that generates ics files",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
