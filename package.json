@@ -1,6 +1,6 @@
 {
   "name": "ics-tsc",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "a library that generates ics files",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -16,7 +16,10 @@
     "libraary",
     "calendar"
   ],
-  "repository": { "type": "git", "url": "git+https://github.com/loukas-kotas/ics-tsc.git" },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/loukas-kotas/ics-tsc.git"
+  },
   "author": "“Loukas <“loukas.kotas@gmail.com”> (“https://www.github.com/loukas-kotas/”)",
   "license": "MIT",
   "dependencies": {
