@@ -127,7 +127,7 @@ export class ICS {
             _body:
            `BEGIN:VCALENDAR
 VERSION:2.0
-PRODID:http://www.icalmaker.com
+TZ:+00
 BEGIN:VEVENT
 UID:http://www.icalmaker.com/event/ed803b69-b846-49c4-a321-ccfc0ba55272
 DTSTAMP:${this.dtstampStr}
