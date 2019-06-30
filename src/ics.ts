@@ -129,7 +129,6 @@ export class ICS {
 VERSION:2.0
 TZ:+00
 BEGIN:VEVENT
-UID:http://www.icalmaker.com/event/ed803b69-b846-49c4-a321-ccfc0ba55272
 DTSTAMP:${this.dtstampStr}
 DTSTART:${this.dtstartStr}
 DTEND:${this.dtendStr}
@@ -149,7 +148,6 @@ END:VCALENDAR`
             `BEGIN:VCALENDAR
 VERSION:2.0
 BEGIN:VEVENT
-UID:http://www.icalmaker.com/event/ed803b69-b846-49c4-a321-ccfc0ba55272
 DTSTAMP;TZID=${timezone}:${this.dtstampStr}
 DTSTART;TZID=${timezone}:${this.dtstartStr}
 DTEND;TZID=${timezone}:${this.dtendStr}
