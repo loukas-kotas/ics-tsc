@@ -42,7 +42,7 @@ export class ICS {
         this.location = location;
     }
 
-    public getIcs() {
+    public exportIcs() {
         this.filename = this.putIcsExtension();
         this.dtstampStr = this.formatDate(this.dtstamp);
         this.dtstartStr = this.formatDate(this.dtstart);
@@ -52,7 +52,7 @@ export class ICS {
         saveAs(blob, this.filename);
     }
 
-    public getIcsWithTimezone() {
+    public exportIcsWithTimezone() {
         this.filename = this.putIcsExtension();
         this.dtstampStr = this.formatDateWithTimezone(this.dtstamp);
         this.dtstartStr = this.formatDateWithTimezone(this.dtstart);
