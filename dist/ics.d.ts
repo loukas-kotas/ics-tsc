@@ -10,16 +10,16 @@ export declare class ICS {
     private dtstartStr;
     private dtendStr;
     constructor(filename?: string, dtstamp?: number, dtstart?: number, dtend?: number, summary?: string, description?: string);
-    getIcs(): void;
-    getIcsWithTimezone(): void;
-    private putIcsExtension();
-    private formatDate(dateUTC);
-    private formatDateWithTimezone(dateUTC);
-    private formatDateBuilder(dateUTC);
-    private setMonthIcsIndex(month);
-    private setUtcTimezone(hours);
-    private forceTwoDigits(dateItem);
-    private getTimeZone();
-    private constructIcsEvent();
-    private constructIcsWithTimezone();
+    exportIcs(): void;
+    exportIcsWithTimezone(): void;
+    private putIcsExtension;
+    private formatDate;
+    private formatDateWithTimezone;
+    private formatDateBuilder;
+    private setMonthIcsIndex;
+    private setUtcTimezone;
+    private forceTwoDigits;
+    private getTimeZone;
+    private constructIcsEvent;
+    private constructIcsWithTimezone;
 }

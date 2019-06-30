@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var file_saver_1 = require("file-saver");
-var ICS = (function () {
+var ICS = /** @class */ (function () {
     function ICS(filename, dtstamp, dtstart, dtend, summary, description, location) {
         this.dtstamp = {};
         this.dtstart = {};
@@ -14,7 +14,7 @@ var ICS = (function () {
         this.description = description;
         this.location = location;
     }
-    ICS.prototype.getIcs = function () {
+    ICS.prototype.exportIcs = function () {
         this.filename = this.putIcsExtension();
         this.dtstampStr = this.formatDate(this.dtstamp);
         this.dtstartStr = this.formatDate(this.dtstart);
@@ -23,7 +23,7 @@ var ICS = (function () {
         var blob = new Blob([response._body], { type: 'text/plain' });
         file_saver_1.saveAs(blob, this.filename);
     };
-    ICS.prototype.getIcsWithTimezone = function () {
+    ICS.prototype.exportIcsWithTimezone = function () {
         this.filename = this.putIcsExtension();
         this.dtstampStr = this.formatDateWithTimezone(this.dtstamp);
         this.dtstartStr = this.formatDateWithTimezone(this.dtstart);
@@ -83,14 +83,14 @@ var ICS = (function () {
     };
     ICS.prototype.constructIcsEvent = function () {
         var response = {
-            _body: "BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:http://www.icalmaker.com\nTZ:+00\nBEGIN:VEVENT\nUID:http://www.icalmaker.com/event/ed803b69-b846-49c4-a321-ccfc0ba55272\nDTSTAMP:" + this.dtstampStr + "\nDTSTART:" + this.dtstartStr + "\nDTEND:" + this.dtendStr + "\nSUMMARY:" + this.summary + "\nLOCATION:" + this.location + "\nDESCRIPTION:" + this.description + "\nEND:VEVENT\nEND:VCALENDAR"
+            _body: "BEGIN:VCALENDAR\nVERSION:2.0\nTZ:+00\nBEGIN:VEVENT\nDTSTAMP:" + this.dtstampStr + "\nDTSTART:" + this.dtstartStr + "\nDTEND:" + this.dtendStr + "\nSUMMARY:" + this.summary + "\nLOCATION:" + this.location + "\nDESCRIPTION:" + this.description + "\nEND:VEVENT\nEND:VCALENDAR"
         };
         return response;
     };
     ICS.prototype.constructIcsWithTimezone = function () {
         var timezone = this.getTimeZone();
         var response = {
-            _body: "BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:http://www.icalmaker.com\nBEGIN:VEVENT\nUID:http://www.icalmaker.com/event/ed803b69-b846-49c4-a321-ccfc0ba55272\nDTSTAMP;TZID=" + timezone + ":" + this.dtstampStr + "\nDTSTART;TZID=" + timezone + ":" + this.dtstartStr + "\nDTEND;TZID=" + timezone + ":" + this.dtendStr + "\nSUMMARY:" + this.summary + "\nLOCATION:" + this.location + "\nDESCRIPTION:" + this.description + "\nEND:VEVENT\nEND:VCALENDAR"
+            _body: "BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nDTSTAMP;TZID=" + timezone + ":" + this.dtstampStr + "\nDTSTART;TZID=" + timezone + ":" + this.dtstartStr + "\nDTEND;TZID=" + timezone + ":" + this.dtendStr + "\nSUMMARY:" + this.summary + "\nLOCATION:" + this.location + "\nDESCRIPTION:" + this.description + "\nEND:VEVENT\nEND:VCALENDAR"
         };
         return response;
     };
