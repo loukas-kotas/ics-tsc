@@ -1,5 +1,8 @@
 # ICS-TSC
 
+[![npm](https://img.shields.io/npm/v/ics-tsc.svg?maxAge=2592000?style=flat-square)](https://www.npmjs.com/package/ics-tsc)
+[![npm](https://img.shields.io/npm/dm/ics-tsc.svg)](https://www.npmjs.com/package/ics-tsc)
+
 ## General
 A library, written in Typescript, that exports ICS (icalendar) event files based on RFC5545.
 Event files are being exported in UTC time format, so there are no timezone compatibility issues.
