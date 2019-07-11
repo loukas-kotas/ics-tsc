@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var file_saver_1 = require("file-saver");
-var ICS = /** @class */ (function () {
+var ICS = (function () {
     function ICS(filename, dtstamp, dtstart, dtend, summary, description, location) {
         this.dtstamp = {};
         this.dtstart = {};
@@ -12,7 +12,7 @@ var ICS = /** @class */ (function () {
         this.dtend = dtend;
         this.summary = summary;
         this.description = description;
-        this.location = location;
+        this.location = location || '';
     }
     ICS.prototype.exportIcs = function () {
         this.filename = this.putIcsExtension();
