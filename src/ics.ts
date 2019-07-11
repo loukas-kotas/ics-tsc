@@ -39,7 +39,7 @@ export class ICS {
         this.dtend = dtend;
         this.summary = summary;
         this.description = description;
-        this.location = location;
+        this.location = location || '';
     }
 
     public exportIcs() {
