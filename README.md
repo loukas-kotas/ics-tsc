@@ -8,6 +8,10 @@ A library, written in Typescript, that exports ICS (icalendar) event files based
 Event files are being exported in UTC time format, so there are no timezone compatibility issues.
 Deviation from UTC time is being calculated according to the timezone offset of the current browser time.
 
+## Demo
+
+You may check the [demo](https://stackblitz.com/edit/ics-tsc-demo?file=src%2Fapp%2Fapp.component.html)
+
 
 ## Compatibility
 
