@@ -48,7 +48,7 @@ You may check the [demo](https://stackblitz.com/edit/ics-tsc-demo?file=src%2Fapp
     const description = 'Description of the event';
 
     const ics = new ICS(filename, dtstamp, dtstart, dtend, summary, description);
-    ics.getIcs();
+    ics.exportICS(); // OR ics.exportIcsWithTimezone()
 
 ```
 
