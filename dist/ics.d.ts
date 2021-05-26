@@ -12,14 +12,14 @@ export declare class ICS {
     constructor(filename?: string, dtstamp?: number, dtstart?: number, dtend?: number, summary?: string, description?: string);
     exportIcs(): void;
     exportIcsWithTimezone(): void;
-    private putIcsExtension();
-    private formatDate(dateUTC);
-    private formatDateWithTimezone(dateUTC);
-    private formatDateBuilder(dateUTC);
-    private setMonthIcsIndex(month);
-    private setUtcTimezone(hours);
-    private forceTwoDigits(dateItem);
-    private getTimeZone();
-    private constructIcsEvent();
-    private constructIcsWithTimezone();
+    private putIcsExtension;
+    private formatDate;
+    private formatDateWithTimezone;
+    private formatDateBuilder;
+    private setMonthIcsIndex;
+    private setUtcTimezone;
+    private forceTwoDigits;
+    private getTimeZone;
+    private constructIcsEvent;
+    private constructIcsWithTimezone;
 }
