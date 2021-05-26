@@ -1,7 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.ICS = void 0;
 var file_saver_1 = require("file-saver");
-var ICS = (function () {
+var ICS = /** @class */ (function () {
     function ICS(filename, dtstamp, dtstart, dtend, summary, description, location) {
         this.dtstamp = {};
         this.dtstart = {};
@@ -20,7 +21,7 @@ var ICS = (function () {
         this.dtstartStr = this.formatDate(this.dtstart);
         this.dtendStr = this.formatDate(this.dtend);
         var response = this.constructIcsEvent();
-        var blob = new Blob([response._body], { type: 'text/plain' });
+        var blob = new Blob([response._body], { type: 'text/calendar' });
         file_saver_1.saveAs(blob, this.filename);
     };
     ICS.prototype.exportIcsWithTimezone = function () {
@@ -29,7 +30,7 @@ var ICS = (function () {
         this.dtstartStr = this.formatDateWithTimezone(this.dtstart);
         this.dtendStr = this.formatDateWithTimezone(this.dtend);
         var response = this.constructIcsWithTimezone();
-        var blob = new Blob([response._body], { type: 'text/plain' });
+        var blob = new Blob([response._body], { type: 'text/calendar' });
         file_saver_1.saveAs(blob, this.filename);
     };
     ICS.prototype.putIcsExtension = function () {

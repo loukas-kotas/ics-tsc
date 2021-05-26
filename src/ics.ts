@@ -48,7 +48,7 @@ export class ICS {
         this.dtstartStr = this.formatDate(this.dtstart);
         this.dtendStr   = this.formatDate(this.dtend);
         const response = this.constructIcsEvent();
-        const blob = new Blob([response._body], { type: 'text/plain' });
+        const blob = new Blob([response._body], { type: 'text/calendar' });
         saveAs(blob, this.filename);
     }
 
@@ -58,7 +58,7 @@ export class ICS {
         this.dtstartStr = this.formatDateWithTimezone(this.dtstart);
         this.dtendStr   = this.formatDateWithTimezone(this.dtend);
         const response = this.constructIcsWithTimezone();
-        const blob = new Blob([response._body], { type: 'text/plain' });
+        const blob = new Blob([response._body], { type: 'text/calendar' });
         saveAs(blob, this.filename);
     }
 
