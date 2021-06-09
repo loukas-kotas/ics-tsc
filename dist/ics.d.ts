@@ -6,6 +6,7 @@ export declare class ICS {
     private summary;
     private location;
     private description;
+    private descriptionAlt;
     private dtstampStr;
     private dtstartStr;
     private dtendStr;
